@@ -253,6 +253,20 @@ def calculateColumnsLines(quantityFrames):
 
     return (columns, lines)
     
+def writeFileDetails(biggerX, biggerY, columns, lines, Nwidth, Nheight):
+
+    f = open("detailsNewFile.txt", "w")
+    f.write("New Frame Size \n")
+    f.write("X: " +str(biggerX)+ " \n")
+    f.write("Y: " +str(biggerY)+ " \n")
+    
+    f.write("\nColumns: " +str(columns)+ "\nLines: " +str(lines)+ "\n")
+
+    f.write("Width New File: " +str(Nwidth)+ "\n")
+    f.write("Height New File: " +str(Nheight)+ "\n")
+
+    pass
+
 def calculateFrames():
     global fileBasename
 
@@ -282,10 +296,9 @@ def calculateFrames():
     newImageX = biggerX * columns
     newImageY = biggerY * lines
 
+    writeFileDetails(biggerX,biggerY,columns,lines,newImageX,newImageY)
+
     newImage = PILImage.new("RGBA", (newImageX, newImageY), (0,0,0,0))
-
-    drawImage = ImageDraw.Draw(newImage)
-
 
     for line in range(lines):
         
